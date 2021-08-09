@@ -1,14 +1,14 @@
-function TodoListItem({ user, todo, deleteTodo }) {
-    const mine = todo.user === user.id
-    return(
+import { useContext } from "react";
+import { UserContext } from "../App";
+
+function TodoListItem({ todo, deleteTodo }) {
+    const { user, setUser } = useContext(UserContext);
+    const mine = todo.user === user.id;
+    return (
         <li className={mine ? "my-todo" : ""}>
             {todo.done ? "✓ " : "○ "}
             {todo.text}
-            {mine && 
-                <button onClick={() => deleteTodo(todo)}>
-                    delete
-                </button>
-            }
+            {mine && <button onClick={() => deleteTodo(todo)}>delete</button>}
         </li>
     );
 }
